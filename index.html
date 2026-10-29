@@ -1,0 +1,764 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيادات ومعامل الحياة | رعايتك وصحتك في أيدٍ أمينة</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#6cc24a',
+                            darkGreen: '#4d9330',
+                            navy: '#0c2340',
+                            teal: '#0f4c5c',
+                            accent: '#2a9d8f',
+                            lightBg: '#f4f9f4'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0c2340 0%, #0f4c5c 50%, #1d3557 100%);
+        }
+        .green-glow {
+            box-shadow: 0 10px 25px -5px rgba(108, 194, 74, 0.4);
+        }
+        /* Comparison Slider CSS */
+        .before-after-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            user-select: none;
+        }
+        .img-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            border-left: 3px solid #6cc24a;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #6cc24a;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- Top Info Bar -->
+    <div class="bg-brand-navy text-white text-sm py-2 border-b border-gray-800 hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-6 space-x-reverse">
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-location-dot text-brand-green"></i>
+                    مدينة الحمام - عزبة الشيخ صابر - عمارة الحاج خالد فوضه
+                </span>
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-clock text-brand-green"></i>
+                    يومياً من 9 صباحاً حتى 11 مساءً
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="tel:01123410880" class="hover:text-brand-green transition-colors"><i class="fas fa-phone text-xs"></i> 01123410880</a>
+                <span>|</span>
+                <a href="https://wa.me/201009979394" target="_blank" class="hover:text-brand-green transition-colors"><i class="fab fa-whatsapp text-xs"></i> 01009979394</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <!-- SVG Custom Logo matching image style -->
+                    <div class="w-12 h-12 relative flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Green Human Body Outline & Head -->
+                            <circle cx="50" cy="22" r="10" fill="#6cc24a" />
+                            <path d="M 25,35 Q 50,20 75,35 C 90,65 60,85 50,92 C 48,80 35,65 25,35 Z" fill="none" stroke="#6cc24a" stroke-width="8" stroke-linecap="round" />
+                            <!-- Black/Dark Hugging Arm/Hand -->
+                            <path d="M 30,50 Q 35,75 55,75 C 65,75 70,68 70,68" fill="none" stroke="#0c2340" stroke-width="7" stroke-linecap="round" />
+                            <!-- Fingers representation -->
+                            <path d="M 52,70 L 60,67 M 53,74 L 62,72 M 52,78 L 60,77" stroke="#0c2340" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-black text-brand-navy leading-tight">عيادات ومعامل</span>
+                        <span class="block text-2xl font-extrabold text-brand-green leading-tight">الـحــيـــاة</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8 space-x-reverse font-semibold text-gray-700">
+                    <a href="#home" class="hover:text-brand-green transition-colors text-brand-green">الرئيسية</a>
+                    <a href="#services" class="hover:text-brand-green transition-colors">خدماتنا الطبية</a>
+                    <a href="#dental" class="hover:text-brand-green transition-colors">عيادة الأسنان</a>
+                    <a href="#labs" class="hover:text-brand-green transition-colors">معامل التحاليل</a>
+                    <a href="#about" class="hover:text-brand-green transition-colors">لماذا الحياة؟</a>
+                    <a href="#contact" class="hover:text-brand-green transition-colors">العنوان والتواصل</a>
+                </div>
+
+                <!-- CTA Button & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center gap-2 bg-brand-green hover:bg-brand-darkGreen text-white px-5 py-2.5 rounded-full font-bold transition-all shadow-md hover:shadow-lg green-glow">
+                        <i class="far fa-calendar-check"></i>
+                        <span>احجز موعدك</span>
+                    </button>
+                    
+                    <button id="mobileMenuBtn" class="lg:hidden text-brand-navy p-2 rounded-lg focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold">
+            <a href="#home" class="block py-2 text-brand-green">الرئيسية</a>
+            <a href="#services" class="block py-2 hover:text-brand-green">خدماتنا الطبية</a>
+            <a href="#dental" class="block py-2 hover:text-brand-green">عيادة الأسنان والتجميل</a>
+            <a href="#labs" class="block py-2 hover:text-brand-green">معامل التحاليل الطبية</a>
+            <a href="#about" class="block py-2 hover:text-brand-green">لماذا الحياة؟</a>
+            <a href="#contact" class="block py-2 hover:text-brand-green">العنوان والتواصل</a>
+            <button onclick="openBookingModal()" class="w-full mt-2 bg-brand-green text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2">
+                <i class="far fa-calendar-check"></i>
+                <span>احجز موعدك الآن</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-gradient text-white py-20 lg:py-28 overflow-hidden">
+        <!-- Background Elements / Glows -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-green/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-teal/30 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Text Content -->
+                <div class="text-center lg:text-right space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-brand-green px-4 py-2 rounded-full text-sm font-bold border border-white/10">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span>الرعاية الطبية الأولى بمدينة الحمام</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+                        حوّل ابتسامتك وصحتك مع <br>
+                        <span class="text-brand-green inline-block mt-2">عيادات ومعامل الحياة</span>
+                    </h1>
+
+                    <p class="text-gray-200 text-lg sm:text-xl leading-relaxed max-w-2xl">
+                        نقدم لك أرقى الخدمات الطبية المتكاملة وأحدث تقنيات تجميل وزراعة الأسنان، إلى جانب أدق التحاليل الطبية تحت إشراف نخبة من كبار الأطباء والمتخصصين.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <button onclick="openBookingModal()" class="bg-brand-green hover:bg-brand-darkGreen text-white font-bold text-lg px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-3 hover:-translate-y-1">
+                            <i class="fas fa-user-md"></i>
+                            <span>احجز استشارتك الآن</span>
+                        </button>
+                        <a href="https://wa.me/201009979394" target="_blank" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-lg px-8 py-4 rounded-xl backdrop-blur-md transition-all flex items-center justify-center gap-3">
+                            <i class="fab fa-whatsapp text-brand-green text-2xl"></i>
+                            <span>تواصل عبر الواتساب</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 text-center">
+                        <div>
+                            <span class="block text-3xl font-black text-brand-green">+15</span>
+                            <span class="text-sm text-gray-300">عيادة وتخصص</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-black text-brand-green">100%</span>
+                            <span class="text-sm text-gray-300">دقة التحاليل</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-black text-brand-green">+10K</span>
+                            <span class="text-sm text-gray-300">ابتسامة راضية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Visual -->
+                <div class="relative flex justify-center">
+                    <div class="w-full max-w-lg bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-white/20 shadow-2xl relative">
+                        <!-- Card Banner Image Mockup -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="عيادات الحياة" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-80"></div>
+                            
+                            <div class="absolute bottom-4 right-4 left-4 text-white p-4 bg-brand-navy/80 backdrop-blur-md rounded-xl border border-white/10">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white text-xl">
+                                        <i class="fas fa-tooth"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">مركز تجميل الأسنان المتقدم</h4>
+                                        <p class="text-xs text-gray-300">ابتسامة هوليود، زراعة، وتقويم الأسنان بأحدث الأجهزة</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -right-6 bg-white text-brand-navy p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-gray-100 hidden sm:flex">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green text-2xl font-bold">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-gray-500">معامل التحاليل الطبية</p>
+                                <p class="font-extrabold text-sm text-brand-navy">أدق النتائج في أسرع وقت</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-green font-bold text-sm tracking-widest uppercase bg-green-50 px-4 py-1.5 rounded-full border border-green-100">خدماتنا الطبية المتكاملة</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-4">عناية صحية شاملة تحت سقف واحد</h2>
+                <p class="text-gray-600 mt-3 text-lg">في عيادات ومعامل الحياة نلتزم بتوفير أسرع وأدق الخدمات الطبية بأعلى معايير الجودة.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Dental -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:border-brand-green/30 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-green-100 text-brand-green rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-navy mb-3">عيادة الأسنان والتجميل</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">تركيبات، ابتسامة هوليود، زراعة الأسنان، تقويم، وتبييض الأسنان بالليزر بأحدث التقنيات بدون ألم.</p>
+                    <a href="#dental" class="inline-flex items-center gap-2 text-brand-green font-bold group-hover:gap-3 transition-all">
+                        <span>اكتشف المزيد</span>
+                        <i class="fas fa-arrow-left text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2: Laboratories -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:border-brand-green/30 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-blue-100 text-brand-teal rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-navy mb-3">معامل التحاليل الطبية</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">فحوصات شاملة، تحاليل الدم، هرمونات، وأورام بأحدث الأجهزة الإلكترونية لضمان أعلى مستويات الدقة.</p>
+                    <a href="#labs" class="inline-flex items-center gap-2 text-brand-teal font-bold group-hover:gap-3 transition-all">
+                        <span>اكتشف المزيد</span>
+                        <i class="fas fa-arrow-left text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3: General Clinics -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:border-brand-green/30 hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-navy mb-3">العيادات التخصصية</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">باطنة، أطفال، عظام، نساء وتوليد، جلدية وتجميل، تحت إشراف نخبة من أفضل الأطباء والاستشاريين.</p>
+                    <button onclick="openBookingModal()" class="inline-flex items-center gap-2 text-emerald-600 font-bold group-hover:gap-3 transition-all">
+                        <span>احجز تخصصك</span>
+                        <i class="fas fa-arrow-left text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dental Transformation Section (Before / After) -->
+    <section id="dental" class="py-20 bg-brand-lightBg border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-green font-bold text-sm uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-green-200">تجميل وزراعة الأسنان</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-4 mb-6 leading-tight">
+                        حوّل ابتسامتك مع عيادات الحياة
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        نحن ندرك أهمية الابتسامة الواثقة والجميلة. نستخدم أحدث وأجود الخامات العصرية في تركيبات الزيركون والإيماكس مع تقنيات تجميل الأسنان بدون ألم.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center text-xs"><i class="fas fa-check"></i></span>
+                            <span class="font-bold text-gray-800">ابتسامة هوليود وتجميل اللثة بالليزر</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center text-xs"><i class="fas fa-check"></i></span>
+                            <span class="font-bold text-gray-800">زراعة الأسنان بأحدث التقنيات الطبية</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center text-xs"><i class="fas fa-check"></i></span>
+                            <span class="font-bold text-gray-800">تركيبات الثابتة والمتحركة عالية الدقة</span>
+                        </li>
+                    </ul>
+
+                    <button onclick="openBookingModal('أسنان')" class="bg-brand-navy hover:bg-gray-800 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg">
+                        احجز كشف الأسنان الآن
+                    </button>
+                </div>
+
+                <!-- Interactive Image Comparison Slider -->
+                <div>
+                    <div class="text-center mb-3 text-sm text-gray-500 font-bold">
+                        <i class="fas fa-hand-pointer text-brand-green"></i> اسحب الشريط لرؤية النتيجة (قبل / بعد)
+                    </div>
+                    <div class="before-after-container h-80 sm:h-96 w-full shadow-2xl border-4 border-white" id="sliderContainer">
+                        <!-- Image Before (Bottom Layer) -->
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover" alt="قبل العلاج">
+                        <span class="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-md">قبل التحول</span>
+
+                        <!-- Image After (Top Clipped Layer) -->
+                        <div class="img-after" id="afterImage">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover max-w-none" id="afterImgTag" alt="بعد العلاج">
+                            <span class="absolute bottom-4 left-4 bg-brand-green/90 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-md">بعد التحول</span>
+                        </div>
+
+                        <!-- Slider Handle -->
+                        <div class="slider-handle" id="sliderHandle">
+                            <i class="fas fa-arrows-alt-h text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Laboratories Section -->
+    <section id="labs" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-navy to-brand-teal text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <span class="bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase">دقة وأمان</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-4 mb-4">معامل تحاليل الحياة الطبية</h2>
+                        <p class="text-gray-200 leading-relaxed mb-6">
+                            نوفر باقة واسعة من التحاليل الطبية الشاملة بأحدث الأجهزة الأوتوماتيكية بالكامل لضمان أدق النتائج في أسرع وقت ممكن لمساعدتك ومساعدة طبيبك المعالج.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center gap-3 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                <i class="fas fa-notes-medical text-brand-green text-xl"></i>
+                                <span class="text-sm font-semibold">تحاليل الفحص الشامل</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                <i class="fas fa-vials text-brand-green text-xl"></i>
+                                <span class="text-sm font-semibold">تحاليل الهرمونات والأورام</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                <i class="fas fa-heartbeat text-brand-green text-xl"></i>
+                                <span class="text-sm font-semibold">وظائف الكبد والكلى</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                <i class="fas fa-home text-brand-green text-xl"></i>
+                                <span class="text-sm font-semibold">سحب العينات من المنزل</span>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('تحاليل')" class="bg-brand-green hover:bg-brand-darkGreen text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all">
+                            حجز موعد سحب عينة
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center">
+                            <i class="fas fa-dna text-6xl text-brand-green mb-4 animate-pulse"></i>
+                            <h3 class="text-xl font-bold mb-2">استلام النتائج أونلاين</h3>
+                            <p class="text-sm text-gray-300 mb-4">يمكنكم استلام نتائج التحاليل مباشرة عبر الواتساب فور صدورها.</p>
+                            <a href="https://wa.me/201009979394" target="_blank" class="inline-flex items-center gap-2 bg-white text-brand-navy px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-whatsapp text-green-600 text-lg"></i>
+                                <span>استفسر عن نتيجتك</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">لماذا تختار عيادات ومعامل الحياة؟</h2>
+                <p class="text-gray-600 mt-3">نضع صحتك وراحتك في مقدمة أولوياتنا دائماً</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100 hover:-translate-y-2 transition-all">
+                    <div class="w-14 h-14 bg-green-100 text-brand-green rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy mb-2">أطباء متخصصون</h3>
+                    <p class="text-gray-600 text-sm">نخبة من أفضل الأطباء والاستشاريين في كافة التخصصات.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100 hover:-translate-y-2 transition-all">
+                    <div class="w-14 h-14 bg-green-100 text-brand-green rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy mb-2">أحدث الأجهزة</h3>
+                    <p class="text-gray-600 text-sm">تقنيات حديثة وأجهزة معقمة بالكامل لضمان سلامتك.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100 hover:-translate-y-2 transition-all">
+                    <div class="w-14 h-14 bg-green-100 text-brand-green rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy mb-2">رعاية فائقة</h3>
+                    <p class="text-gray-600 text-sm">بيئة مريحة وطاقم تمريض ودود لخدمتك طوال الوقت.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100 hover:-translate-y-2 transition-all">
+                    <div class="w-14 h-14 bg-green-100 text-brand-green rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy mb-2">أسعار مناسبة</h3>
+                    <p class="text-gray-600 text-sm">أعلى مستوى من الخدمة الطبية بأسعار مناسبة للجميع.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Contact Details -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm uppercase">تواصل معنا</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-2">يسعدنا استقبالكم وزيارتكم</h2>
+                        <p class="text-gray-600 mt-2">يمكنكم التواصل معنا مباشرة للحجز أو الاستفسار عن المواعيد والخدمات.</p>
+                    </div>
+
+                    <!-- Address Box -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 flex items-start gap-4">
+                        <div class="w-12 h-12 bg-brand-green text-white rounded-xl flex items-center justify-center text-2xl shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-brand-navy">العنوان التفصيلي</h4>
+                            <p class="text-gray-700 mt-1 leading-relaxed">
+                                مدينة الحمام - عزبة الشيخ صابر - بعد مسجد آل فوضه - عمارة الحاج خالد فوضه.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Phone Numbers Box -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <a href="tel:01123410880" class="bg-gray-50 p-5 rounded-2xl border border-gray-200 hover:border-brand-green transition-all flex items-center gap-4 group">
+                            <div class="w-10 h-10 bg-green-100 text-brand-green rounded-lg flex items-center justify-center text-xl group-hover:bg-brand-green group-hover:text-white transition-colors">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 font-bold">اتصال تلفوني</span>
+                                <span class="font-black text-brand-navy dir-ltr text-lg">01123410880</span>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/201009979394" target="_blank" class="bg-gray-50 p-5 rounded-2xl border border-gray-200 hover:border-brand-green transition-all flex items-center gap-4 group">
+                            <div class="w-10 h-10 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-xl group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 font-bold">واتساب واستعلام</span>
+                                <span class="font-black text-brand-navy dir-ltr text-lg">01009979394</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bg-brand-lightBg p-6 rounded-2xl border border-green-200 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-brand-navy">ساعات العمل الرسمية</h4>
+                            <p class="text-sm text-gray-600 mt-1">طوال أيام الأسبوع: 9:00 ص - 11:00 م</p>
+                        </div>
+                        <i class="far fa-clock text-3xl text-brand-green"></i>
+                    </div>
+                </div>
+
+                <!-- Interactive Location Map Mockup / Directions Card -->
+                <div class="bg-brand-navy text-white rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                    <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-brand-green/20 rounded-full blur-2xl"></div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-brand-green/20 text-brand-green text-xs font-bold px-3 py-1 rounded-full border border-brand-green/30">خريطة الوصول</span>
+                            <i class="fas fa-directions text-2xl text-brand-green"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">طريقة الوصول لعيادات الحياة</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            تقع العيادات والمعامل بموقع حيوي بمدينة الحمام، بالقرب من مسجد آل فوضه بعزبة الشيخ صابر داخل عمارة الحاج خالد فوضه.
+                        </p>
+                    </div>
+
+                    <!-- Visual Map Placeholder/Card -->
+                    <div class="bg-white/10 rounded-2xl p-6 border border-white/10 backdrop-blur-md mb-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-map-marked-alt text-brand-green text-3xl"></i>
+                            <div>
+                                <h4 class="font-bold text-sm">مدينة الحمام - مرسى مطروح / الإسكندرية</h4>
+                                <p class="text-xs text-gray-300">سهولة الوصول عبر المواصلات العامة أو الخاصة</p>
+                            </div>
+                        </div>
+                        <a href="https://maps.google.com" target="_blank" class="w-full py-3 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all text-sm">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>فتح خرائط جوجل (Google Maps)</span>
+                        </a>
+                    </div>
+
+                    <div class="text-center text-xs text-gray-400">
+                        لأي استفسار عن الطريق يرجى الاتصال بنا فوراً.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white border-t border-gray-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: Branding -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="50" cy="22" r="10" fill="#6cc24a" />
+                                <path d="M 25,35 Q 50,20 75,35 C 90,65 60,85 50,92 C 48,80 35,65 25,35 Z" fill="none" stroke="#6cc24a" stroke-width="8" stroke-linecap="round" />
+                                <path d="M 30,50 Q 35,75 55,75 C 65,75 70,68 70,68" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-black text-white">عيادات ومعامل <span class="text-brand-green">الحياة</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">
+                        مركز طبي متكامل يوفر أرقى الخدمات العلاجية، عيادات الأسنان والتجميل، ومعامل التحاليل الطبية الدقيقة بمدينة الحمام.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-green">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#home" class="hover:text-brand-green transition-colors">الرئيسية</a></li>
+                        <li><a href="#services" class="hover:text-brand-green transition-colors">الخدمات الطبية</a></li>
+                        <li><a href="#dental" class="hover:text-brand-green transition-colors">عيادة الأسنان</a></li>
+                        <li><a href="#labs" class="hover:text-brand-green transition-colors">معامل التحاليل</a></li>
+                        <li><a href="#contact" class="hover:text-brand-green transition-colors">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contact Info -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-green">أرقام التواصل</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-brand-green"></i>
+                            <a href="tel:01123410880" class="hover:text-white dir-ltr">01123410880</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fab fa-whatsapp text-brand-green text-base"></i>
+                            <a href="https://wa.me/201009979394" target="_blank" class="hover:text-white dir-ltr">01009979394</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400">
+                <p>جميع الحقوق محفوظة © 2026 لـ عيادات ومعامل الحياة.</p>
+                <div class="flex space-x-4 space-x-reverse mt-4 sm:mt-0">
+                    <a href="https://wa.me/201009979394" class="hover:text-brand-green text-lg"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="hover:text-brand-green text-lg"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-brand-green text-lg"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative border border-gray-100 animate-fade-in">
+            <!-- Close Button -->
+            <button onclick="closeBookingModal()" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 text-xl w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-green-100 text-brand-green rounded-full flex items-center justify-center text-xl mx-auto mb-2">
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-brand-navy">حجز موعد جديد</h3>
+                <p class="text-xs text-gray-500 mt-1">قم بتعبئة البيانات وسيقوم فريقنا بالتأكيد معك فوراً</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الاسم بالكامل</label>
+                    <input type="text" required placeholder="أدخل اسمك الكريم" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 outline-none text-sm transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">رقم الهاتف / الواتساب</label>
+                    <input type="tel" required placeholder="01xxxxxxxxx" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 outline-none text-sm transition-all dir-rtl">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الخدمة المطلوبة</label>
+                    <select id="modalServiceSelect" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 outline-none text-sm transition-all bg-white">
+                        <option value="أسنان">عيادة الأسنان والتجميل</option>
+                        <option value="تحاليل">معامل التحاليل الطبية</option>
+                        <option value="باطنة">عيادة الباطنة</option>
+                        <option value="أطفال">عيادة الأطفال</option>
+                        <option value="تخصص آخر">تخصص آخر / استفسار عام</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">التاريخ المفضل</label>
+                    <input type="date" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 outline-none text-sm transition-all">
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green hover:bg-brand-darkGreen text-white font-bold py-3.5 rounded-xl shadow-lg transition-all mt-4">
+                    تأكيد الحجز الآن
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Quick Actions (WhatsApp & Call) -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/201009979394" target="_blank" class="w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:01123410880" class="w-14 h-14 bg-brand-navy hover:bg-gray-800 text-white rounded-full flex items-center justify-center text-xl shadow-2xl transition-all hover:scale-110">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Booking Modal Logic
+        function openBookingModal(serviceType = '') {
+            const modal = document.getElementById('bookingModal');
+            const serviceSelect = document.getElementById('modalServiceSelect');
+            
+            if(serviceType) {
+                for (let option of serviceSelect.options) {
+                    if (option.value.includes(serviceType)) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            alert('تم استلام طلب الحجز بنجاح! سيقوم موظف الاستقبال بالتواصل معك قريباً لتأكيد الموعد.');
+            closeBookingModal();
+        }
+
+        // Before/After Image Comparison Slider Logic
+        const container = document.getElementById('sliderContainer');
+        const afterImg = document.getElementById('afterImage');
+        const handle = document.getElementById('sliderHandle');
+        const afterImgTag = document.getElementById('afterImgTag');
+
+        function updateSliderWidth() {
+            if(container) {
+                afterImgTag.style.width = container.offsetWidth + 'px';
+            }
+        }
+        window.addEventListener('resize', updateSliderWidth);
+        updateSliderWidth();
+
+        let isDragging = false;
+
+        function moveSlider(x) {
+            const rect = container.getBoundingClientRect();
+            let position = x - rect.left;
+            
+            if (position < 0) position = 0;
+            if (position > rect.width) position = rect.width;
+
+            const percentage = (position / rect.width) * 100;
+            afterImg.style.width = percentage + '%';
+            handle.style.left = percentage + '%';
+        }
+
+        container.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.clientX);
+        });
+
+        // Touch support for mobile
+        container.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.touches[0].clientX);
+        });
+    </script>
+</body>
+</html>
+```
